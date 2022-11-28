@@ -1,23 +1,23 @@
-package Pilha;
+package Stack;
 
-public class PilhaVetor<T> implements Pilha<T>{
+public class ContiguosStack<T> implements IStack<T> {
 
     private int counter = -1;
-    private static int tamanho = 10;
-    private T[] vet;
+    private static int stackSize = 10;
+    private T[] array;
 
-    public PilhaVetor(int tamanho) {
-        this.vet = (T[]) new Object[tamanho];
+    public ContiguosStack(int stackSize) {
+        this.array = (T[]) new Object[stackSize];
     }
 
-    public PilhaVetor() {
-        this(tamanho);
+    public ContiguosStack() {
+        this(stackSize);
     }
 
     @Override
     public void push(T obj) throws Exception {
-        if(this.counter < this.vet.length && !isFull()){
-            this.vet[++this.counter] = obj;
+        if(this.counter < this.array.length && !isFull()){
+            this.array[++this.counter] = obj;
         }
     }
 
@@ -26,14 +26,14 @@ public class PilhaVetor<T> implements Pilha<T>{
         if(this.empty()){
             return null;
         }
-        return this.vet[this.counter--];
+        return this.array[this.counter--];
     }
 
     public T top() throws Exception {
         if(this.empty()){
             return null;
         }
-        return this.vet[this.counter];
+        return this.array[this.counter];
     }
 
     public int size() throws Exception{
@@ -51,13 +51,13 @@ public class PilhaVetor<T> implements Pilha<T>{
     @Override
     public void release() {
         if (!this.empty()) {
-            this.vet = null;
+            this.array = null;
             this.counter = -1;
         }
     }
 
     @Override
     public boolean isFull() {
-        return counter == vet.length-1;
+        return counter == array.length-1;
     }
 }

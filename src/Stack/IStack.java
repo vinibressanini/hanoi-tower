@@ -1,6 +1,6 @@
-package Pilha;
+package Stack;
 
-public interface Pilha<T> {
+public interface IStack<T> {
     void push(T obj) throws Exception;
     T pop () throws Exception;
     T top () throws Exception;
