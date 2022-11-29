@@ -15,28 +15,28 @@ public class ContiguosStack<T> implements IStack<T> {
     }
 
     @Override
-    public void push(T obj) throws Exception {
+    public void push(T obj) {
         if(this.counter < this.array.length && !isFull()){
             this.array[++this.counter] = obj;
         }
     }
 
     @Override
-    public T pop() throws Exception {
+    public T pop() {
         if(this.empty()){
             return null;
         }
         return this.array[this.counter--];
     }
 
-    public T top() throws Exception {
+    public T top() {
         if(this.empty()){
             return null;
         }
         return this.array[this.counter];
     }
 
-    public int size() throws Exception{
+    public int size(){
         if(this.empty()){
             return 0;
         }
