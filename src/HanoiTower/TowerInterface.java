@@ -1,9 +1,6 @@
 package HanoiTower;
 
 import Stack.IStack;
-
-import java.lang.reflect.Parameter;
-
 public class TowerInterface {
     private int discCount;
 
@@ -11,8 +8,8 @@ public class TowerInterface {
         this.discCount = stack.size();
     }
 
-    public String generateTowers(IStack<Integer> stack) {
-        String towers = "";
+    public String generateTowers(IStack<Integer> stack, int towerNumber) {
+        String towers = "\nTower " + towerNumber + "\n";
         int towerSize = this.discCount - stack.size();
 
         for (int i = 0; i < towerSize; i++) {

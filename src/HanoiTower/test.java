@@ -1,20 +1,13 @@
 package HanoiTower;
 
-import Stack.ContiguosStack;
-import Stack.DynamicStack;
-
 public class test {
     public static void main(String[] args) {
-        ContiguosStack<Integer> stack = new ContiguosStack<>();
-        TowerInterface tower = new TowerInterface();
 
-        stack.push(5);
-        stack.push(4);
-        stack.push(3);
-        stack.push(2);
+        TowerController controller = new TowerController();
 
-        tower.buildGame(stack);
-        String test = tower.generateTowers(stack);
+        controller.startGame("dinamica",5);
+
+        String test = controller.getTowers().toString();
 
         System.out.println(test);
 
