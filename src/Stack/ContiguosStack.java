@@ -2,62 +2,59 @@ package Stack;
 
 public class ContiguosStack<T> implements IStack<T> {
 
-    private int counter = -1;
-    private static int stackSize = 10;
+    private int counter = 0, size;
     private T[] array;
 
-    public ContiguosStack(int stackSize) {
-        this.array = (T[]) new Object[stackSize];
-    }
-
-    public ContiguosStack() {
-        this(stackSize);
+    public ContiguosStack(int size) {
+        this.size = size;
+        this.array = (T[]) new Object[size];
     }
 
     @Override
     public void push(T obj) {
-        if(this.counter < this.array.length && !isFull()){
-            this.array[++this.counter] = obj;
+        if (!isFull()) {
+            this.array[counter] = obj;
+            counter++;
         }
     }
 
     @Override
     public T pop() {
-        if(this.empty()){
-            return null;
+        if (!isEmpty()) {
+            counter--;
+            T obj = this.array[counter];
+            this.array[counter] = null;
+            return obj;
         }
-        return this.array[this.counter--];
+        return null;
     }
 
+    @Override
     public T top() {
-        if(this.empty()){
+        if (isEmpty()) {
             return null;
         }
-        return this.array[this.counter];
-    }
-
-    public int size(){
-        if(this.empty()){
-            return 0;
-        }
-        return this.counter+1;
+        return this.array[counter - 1];
     }
 
     @Override
-    public boolean empty() {
-        return this.counter == -1;
-    }
-
-    @Override
-    public void release() {
-        if (!this.empty()) {
-            this.array = null;
-            this.counter = -1;
-        }
+    public boolean isEmpty() {
+        return counter == 0;
     }
 
     @Override
     public boolean isFull() {
-        return counter == array.length-1;
+        return counter == size;
+    }
+
+    @Override
+    public int size() {
+        return counter;
+    }
+
+    @Override
+    public void clear() {
+        this.array = (T[]) new Object[this.size];
+        counter = 0;
     }
 }

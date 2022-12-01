@@ -1,17 +1,19 @@
 package Stack;
 
 public class DynamicStack<T> implements IStack<T> {
-    private StackKnot<T> last;
+    private StackNode<T> last;
     private int counter = 0;
+
+    public DynamicStack() {}
 
     @Override
     public void push(T obj) {
-        if(empty()) {
-            StackKnot<T> item = new StackKnot<T>(obj, null);
+        if(isEmpty()) {
+            StackNode<T> item = new StackNode<T>(obj, null);
             last = item;
             counter++;
         } else {
-            StackKnot<T> item = new StackKnot<T>(obj, last);
+            StackNode<T> item = new StackNode<T>(obj, last);
             last = item;
             counter++;
         }
@@ -19,14 +21,20 @@ public class DynamicStack<T> implements IStack<T> {
 
     @Override
     public T pop() {
-        T value = last.getObj();
-        last = last.getNext();
-        counter--;
-        return value;
+        if (!isEmpty()) {
+            T value = last.getObj();
+            last = last.getNext();
+            counter--;
+            return value;
+        }
+        return null;
     }
 
     @Override
     public T top() {
+        if (counter == 0) {
+            return null;
+        }
         return last.getObj();
     }
 
@@ -36,12 +44,12 @@ public class DynamicStack<T> implements IStack<T> {
     }
 
     @Override
-    public boolean empty() {
+    public boolean isEmpty() {
         return counter == 0;
     }
 
     @Override
-    public void release() {
+    public void clear() {
         last = null;
         counter = 0;
     }

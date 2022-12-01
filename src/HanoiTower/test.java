@@ -1,15 +1,31 @@
 package HanoiTower;
 
+import java.util.Scanner;
+
 public class test {
     public static void main(String[] args) {
 
+        Scanner scanner  = new Scanner(System.in);
+
         TowerController controller = new TowerController();
 
-        controller.startGame("dinamica",5);
+        controller.startGame("contigua",3);
+        controller.populateTower();
 
-        String test = controller.getTowers().toString();
+        do {
+            int origin = 0;
+            int destiny = 0;
+            System.out.println(controller.getTowers());
+            System.out.println("\nDe qual torre você deseja retirar um disco?\n");
+            origin = scanner.nextInt();
+            System.out.println("\nPara qual torre você deseja mover o disco?\n");
+            destiny = scanner.nextInt();
+            controller.moveDisc(origin,destiny);
 
-        System.out.println(test);
+        } while (!controller.endGame());
+
+        System.out.println(controller.getTowers());
+        System.out.println(controller.getTowers());
 
     }
 }

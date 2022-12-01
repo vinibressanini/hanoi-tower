@@ -1,10 +1,17 @@
 package Stack;
 
-public class StackKnot<T> {
+public class StackNode<T> {
     private T obj;
-    private StackKnot<T> next;
+    private StackNode<T> next;
 
-    public StackKnot(T obj, StackKnot<T> next) {
+    public StackNode() {
+    }
+
+    public StackNode(StackNode<T> next) {
+        this.next = next;
+    }
+
+    public StackNode(T obj, StackNode<T> next) {
         this.obj = obj;
         this.next = next;
     }
@@ -17,11 +24,11 @@ public class StackKnot<T> {
         this.obj = obj;
     }
 
-    public StackKnot<T> getNext() {
+    public StackNode<T> getNext() {
         return next;
     }
 
-    public void setNext(StackKnot<T> next) {
+    public void setNext(StackNode<T> next) {
         this.next = next;
     }
 }
