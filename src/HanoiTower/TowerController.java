@@ -73,7 +73,7 @@ public class TowerController {
 
     public void moveDisc (int originTower, int destinyTower) {
         if(!validTowers(originTower,destinyTower)) {
-            System.out.println("Você só pode informar 1, 2 ou 3");
+            System.out.println("Esta torre não existe! Somente 1,2 ou 3");
         }
 
         if (originTower == 1 && destinyTower == 2) {
@@ -93,7 +93,9 @@ public class TowerController {
 
     private void verifyDiscMovement(IStack<Integer> originTower, IStack<Integer> destinyTower) {
         if (!this.endGame()) {
-            if (destinyTower.isEmpty()) {
+            if (originTower.isEmpty()) {
+                System.out.println("A torre de origem está vazia! Escolha uma torre que possua discos");
+            } else if (destinyTower.isEmpty()) {
                 destinyTower.push(originTower.pop());
                 totalMoves++;
             } else if (destinyTower.top() > originTower.top()) {
