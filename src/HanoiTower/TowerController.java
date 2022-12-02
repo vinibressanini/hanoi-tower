@@ -12,6 +12,8 @@ public class TowerController {
     private IStack<Integer> thirdTower;
     private int discCount = 5;
 
+    private int totalMoves =0;
+
     private TowerInterface towerInterface = new TowerInterface();
 
     public void startGame(String type) {
@@ -92,11 +94,13 @@ public class TowerController {
     private void verifyDiscMovement(IStack<Integer> originTower, IStack<Integer> destinyTower) {
         if (!this.endGame()) {
             if (destinyTower.isEmpty()) {
-                Integer value = originTower.pop();
-                destinyTower.push(value);
+                destinyTower.push(originTower.pop());
+                totalMoves++;
             } else if (destinyTower.top() > originTower.top()) {
-                Integer value = originTower.pop();
-                destinyTower.push(value);
+                destinyTower.push(originTower.pop());
+                totalMoves++;
+            } else {
+                System.out.println("Movimento Inválido! O Disco De Origem Deve Ser Menor Que o Disco De Destino");
             }
         }
     }
@@ -104,13 +108,16 @@ public class TowerController {
     private boolean validTowers(int origin, int destiny) {
         if (origin > 0 && origin < 4 && destiny > 0 && destiny < 4) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public boolean endGame() {
         return thirdTower.size() == discCount;
+    }
+
+    public String getPlayerTotalMoves() {
+        return "Parabéns! Você finalizou o jogo com " + totalMoves + " jogadas!";
     }
 
 

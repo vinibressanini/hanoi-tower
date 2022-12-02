@@ -9,7 +9,12 @@ public class test {
 
         TowerController controller = new TowerController();
 
-        controller.startGame("contigua",3);
+        if (args.length == 0) {
+            System.out.println("Informe o tipo de implementação (dinamica ou contigua)");
+            return;
+        }
+
+        controller.startGame(args[0], Integer.parseInt(args[1]));
         controller.populateTower();
 
         do {
@@ -25,7 +30,7 @@ public class test {
         } while (!controller.endGame());
 
         System.out.println(controller.getTowers());
-        System.out.println(controller.getTowers());
+        System.out.println(controller.getPlayerTotalMoves());
 
     }
 }
