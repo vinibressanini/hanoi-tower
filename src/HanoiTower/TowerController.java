@@ -4,8 +4,6 @@ import Stack.ContiguosStack;
 import Stack.DynamicStack;
 import Stack.IStack;
 
-import java.util.LinkedList;
-
 public class TowerController {
     private IStack<Integer> firstTower;
     private IStack<Integer> secondTower;
@@ -14,34 +12,36 @@ public class TowerController {
 
     private int totalMoves =0;
 
-    private TowerInterface towerInterface = new TowerInterface();
+    private final TowerInterface towerInterface = new TowerInterface();
 
     public void startGame(String type) {
         switch (type) {
-            case "dinamica" :
+            case "dinamica" -> {
                 this.firstTower = new DynamicStack<>();
                 this.secondTower = new DynamicStack<>();
                 this.thirdTower = new DynamicStack<>();
-                break;
-            case "contigua" :
+            }
+            case "contigua" -> {
                 this.firstTower = new ContiguosStack<>(this.discCount);
                 this.secondTower = new ContiguosStack<>(this.discCount);
                 this.thirdTower = new ContiguosStack<>(this.discCount);
-                break;
+            }
         }
 
     }
     public void startGame(String type, int totalDiscs) {
         this.discCount = totalDiscs;
         switch (type) {
-            case "dinamica" :
+            case "dinamica" -> {
                 this.firstTower = new DynamicStack<>();
                 this.secondTower = new DynamicStack<>();
                 this.thirdTower = new DynamicStack<>();
-            case "contigua" :
+            }
+            case "contigua" -> {
                 this.firstTower = new ContiguosStack<>(this.discCount);
                 this.secondTower = new ContiguosStack<>(this.discCount);
                 this.thirdTower = new ContiguosStack<>(this.discCount);
+            }
         }
     }
 
@@ -53,19 +53,13 @@ public class TowerController {
         towerInterface.buildGame(this.firstTower);
     }
 
-
     public StringBuilder getTowers() {
         StringBuilder towers = new StringBuilder();
         for(int i = 1; i < 4; i++) {
             switch (i) {
-                case 1 :
-                    towers.append(towerInterface.generateTowers(firstTower,i));
-                    break;
-                case 2:
-                    towers.append(towerInterface.generateTowers(secondTower,i));
-                    break;
-                case 3:
-                    towers.append(towerInterface.generateTowers(thirdTower,i));
+                case 1 -> towers.append(towerInterface.generateTowers(firstTower, i));
+                case 2 -> towers.append(towerInterface.generateTowers(secondTower, i));
+                case 3 -> towers.append(towerInterface.generateTowers(thirdTower, i));
             }
         }
         return towers;
@@ -108,10 +102,7 @@ public class TowerController {
     }
 
     private boolean validTowers(int origin, int destiny) {
-        if (origin > 0 && origin < 4 && destiny > 0 && destiny < 4) {
-            return true;
-        }
-        return false;
+        return origin > 0 && origin < 4 && destiny > 0 && destiny < 4;
     }
 
     public boolean endGame() {
@@ -121,6 +112,5 @@ public class TowerController {
     public String getPlayerTotalMoves() {
         return "Parabéns! Você finalizou o jogo com " + totalMoves + " jogadas!";
     }
-
 
 }
