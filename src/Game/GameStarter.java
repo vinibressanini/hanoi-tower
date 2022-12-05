@@ -14,7 +14,11 @@ public class GameStarter {
         if (args.length == 0) {
             System.out.println("Informe o tipo de implementação (dinamica ou contigua)");
             return;
-        } else if (args.length == 1) {
+        } else if(args.length == 1 && args[0].equals("sobre")) {
+            System.out.println("Vinícius Marcus Bressanini e Victor Bachmann Lueders");
+            return;
+        }
+        else if (args.length == 1) {
             try {
                 controller.startGame(args[0]);
                 controller.populateTower();
@@ -22,7 +26,7 @@ public class GameStarter {
                 System.out.println("Argumento Inválido! Opções válidas dinamica ou contigua");
                 return;
             }
-        } else if (args.length > 1) {
+        }else {
             try {
                 controller.startGame(args[0], Integer.parseInt(args[1]));
                 controller.populateTower();

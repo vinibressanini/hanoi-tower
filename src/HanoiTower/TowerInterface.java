@@ -12,9 +12,11 @@ public class TowerInterface {
         String towers = "\nTower " + towerNumber + "\n";
         int towerSize = this.discCount - stack.size();
 
+
         for (int i = 0; i < towerSize; i++) {
             towers += this.getEmptySpaces(this.discCount) + "| \n";
         }
+
         towers += this.generateTowerDiscs(stack);
         return towers;
     }
