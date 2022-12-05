@@ -9,7 +9,7 @@ public class GameStarter {
     public static void startGame(String[] args) {
         Scanner scanner  = new Scanner(System.in);
         TowerController controller = new TowerController();
-        int origin, destiny;
+        short origin, destiny;
 
         if (args.length == 0) {
             System.out.println("Informe o tipo de implementação (dinamica ou contigua)");
@@ -28,7 +28,7 @@ public class GameStarter {
             }
         }else {
             try {
-                controller.startGame(args[0], Integer.parseInt(args[1]));
+                controller.startGame(args[0], Short.parseShort(args[1]));
                 controller.populateTower();
             } catch (NumberFormatException ex) {
                 System.out.println("Argumento Inválido! Informe um número de discos válido");
@@ -42,9 +42,9 @@ public class GameStarter {
         do {
             System.out.println(controller.getTowers());
             System.out.println("\nDe qual torre você deseja retirar um disco?\n");
-            origin = scanner.nextInt();
+            origin = scanner.nextShort();
             System.out.println("\nPara qual torre você deseja mover o disco?\n");
-            destiny = scanner.nextInt();
+            destiny = scanner.nextShort();
             controller.moveDisc(origin,destiny);
 
         } while (!controller.endGame());
