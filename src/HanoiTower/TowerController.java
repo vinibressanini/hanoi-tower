@@ -8,9 +8,9 @@ public class TowerController {
     private IStack<Integer> firstTower;
     private IStack<Integer> secondTower;
     private IStack<Integer> thirdTower;
-    private int discCount = 5;
+    private short discCount = 5;
 
-    private int totalMoves =0;
+    private short totalMoves = 0;
 
     private final TowerInterface towerInterface = new TowerInterface();
 
@@ -29,7 +29,7 @@ public class TowerController {
         }
 
     }
-    public void startGame(String type, int totalDiscs) {
+    public void startGame(String type, short totalDiscs) {
         this.discCount = totalDiscs;
         switch (type) {
             case "dinamica" -> {
@@ -55,7 +55,7 @@ public class TowerController {
 
     public StringBuilder getTowers() {
         StringBuilder towers = new StringBuilder();
-        for(int i = 1; i < 4; i++) {
+        for(short i = 1; i < 4; i++) {
             switch (i) {
                 case 1 -> towers.append(towerInterface.generateTowers(firstTower, i));
                 case 2 -> towers.append(towerInterface.generateTowers(secondTower, i));
@@ -65,7 +65,7 @@ public class TowerController {
         return towers;
     }
 
-    public void moveDisc (int originTower, int destinyTower) {
+    public void moveDisc (short originTower, short destinyTower) {
         if(!validTowers(originTower,destinyTower)) {
             System.out.println("Esta torre não existe! Somente 1,2 ou 3");
         }
@@ -101,7 +101,7 @@ public class TowerController {
         }
     }
 
-    private boolean validTowers(int origin, int destiny) {
+    private boolean validTowers(short origin, short destiny) {
         return origin > 0 && origin < 4 && destiny > 0 && destiny < 4;
     }
 

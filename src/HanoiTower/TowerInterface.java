@@ -2,13 +2,13 @@ package HanoiTower;
 
 import Stack.IStack;
 public class TowerInterface {
-    private int discCount;
+    private short discCount;
 
     public void buildGame (IStack<Integer> stack) {
-        this.discCount = stack.size();
+        this.discCount = (short) stack.size();
     }
 
-    public String generateTowers(IStack<Integer> stack, int towerNumber) {
+    public String generateTowers(IStack<Integer> stack, short towerNumber) {
         String towers = "\nTower " + towerNumber + "\n";
         int towerSize = this.discCount - stack.size();
 
@@ -41,7 +41,7 @@ public class TowerInterface {
     }
 
     private int[] generateTowerArray(IStack<Integer> stack) {
-        int numOfDisc = stack.size();
+        short numOfDisc = (short) stack.size();
         int[] towerArray;
         if (!stack.isEmpty()) {
             towerArray = new int[stack.size()];
